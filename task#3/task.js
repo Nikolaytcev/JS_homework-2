@@ -1,51 +1,49 @@
 const pictures = Array.from(document.querySelectorAll('.slider__item'));
 const sliders = Array.from(document.querySelectorAll('.slider__arrow'));
-const sliders_dots = Array.from(document.querySelectorAll('.slider__dot'))
-let counter = 0;
-let ind = 0;
-
+const slidersDots = Array.from(document.querySelectorAll('.slider__dot'))
 
 function showPic(index) {
     for (let i = 0; i < pictures.length; i++){
         pictures[i].classList = 'slider__item';
-        sliders_dots[i].classList = 'slider__dot';
+        slidersDots[i].classList = 'slider__dot';
     };
     pictures[index].classList.add('slider__item_active');
-    sliders_dots[index].classList.add('slider__dot_active');
+    slidersDots[index].classList.add('slider__dot_active');
 };
 
 
-function checkCounter(counter) {
-    if (counter < 0) {
-        if (counter % pictures.length == 0) {
+function checkIndex(index) {
+    if (index < 0) {
+        if (index % pictures.length == 0) {
             return 0;
         }
         else {
-            return (pictures.length + counter % pictures.length);
+            return (pictures.length + index % pictures.length);
         }
     }
     else {
-        return counter % pictures.length;
+        return index % pictures.length;
     }
 };
 
 sliders.forEach((e) => {
     e.onclick = () => {
+        let indexActive = 0;
+        pictures.forEach((e, i) => {if (e.classList.contains('slider__item_active')) {indexActive = i}});
         if (e.classList.contains('slider__arrow_next')) {
-            counter++;
-            showPic(checkCounter(counter));
+            indexActive++;
+            showPic(checkIndex(indexActive));
         }
         else {
-            counter--;
-            showPic(checkCounter(counter));
+            indexActive--;
+            showPic(checkIndex(indexActive));
         }
 }
 });
 
-for (let j = 0; j < sliders_dots.length; j++) {
-    sliders_dots[j].onclick = () => {
-        counter = j;
-        showPic(counter)
+for (let j = 0; j < slidersDots.length; j++) {
+    slidersDots[j].onclick = () => {
+        showPic(j)
     }
 };
 

@@ -1,16 +1,17 @@
-const div = Array.from(document.querySelectorAll('.modal__close'));
-const modal_main = window.modal_main;
-const modal_success = window.modal_success;
+const modal = Array.from(document.querySelectorAll('.modal__close'));
+const modalMain = window.modal_main;
+const modalSuccess = window.modal_success;
 
 
-div.forEach((e) => {
+modal.forEach((e) => {
  e.onclick = () => {
     if (e.classList.contains('modal__close_times')) {
-        modal_main.style.display = 'none';
-        modal_success.style.display = 'none';
+        modalMain.style.display = 'none';
+        modalSuccess.style.display = 'none';
     }
     if (e.classList.contains('show-success')) {
-        modal_success.classList.add('modal_active');
+        modalMain.classList = 'modal';
+        modalSuccess.classList.add('modal_active');
     };
  }
 });
